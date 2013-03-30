@@ -385,8 +385,8 @@ Leave one space or none, according to the context."
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 
-(add-to-list 'default-frame-alist '(width . 214))
-(add-to-list 'default-frame-alist '(alpha 97 15))
+(add-to-list 'default-frame-alist '(width . 104))
+(add-to-list 'default-frame-alist '(alpha 85 85))
 (add-to-list 'default-frame-alist '(background-color . "black"))
 
 (add-hook 'prog-mode-hook 'auto-fill-mode)
