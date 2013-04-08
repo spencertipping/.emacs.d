@@ -6,7 +6,7 @@
 ;; tab width as two, using spaces
 (setq default-tab-width 2)
 (setq-default indent-tabs-mode nil)
-(setq-default fill-column 100)
+(setq-default fill-column 80)
 
 ;;; This was installed by package-install.el.
 ;;; This provides support for the package system and
@@ -385,12 +385,15 @@ Leave one space or none, according to the context."
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 
-(add-to-list 'default-frame-alist '(width . 104))
+(add-to-list 'default-frame-alist '(width . 81))
 (add-to-list 'default-frame-alist '(alpha 85 85))
 (add-to-list 'default-frame-alist '(background-color . "black"))
 
 (add-hook 'prog-mode-hook 'auto-fill-mode)
 (add-hook 'prog-mode-hook 'fci-mode)
+
+(add-hook 'text-mode-hook 'auto-fill-mode)
+(add-hook 'text-mode-hook 'fci-mode)
 
 (setq-default c-basic-offset 2)
 
@@ -462,55 +465,6 @@ Leave one space or none, according to the context."
   ;; http://shreevatsa.wordpress.com/2006/10/22/emacs-copypaste-and-x/
   ;; http://www.mail-archive.com/help-gnu-emacs@gnu.org/msg03577.html
   ))
-
-(defun goto-match-paren (arg)
-  "Go to the matching parenthesis if on parenthesis AND last command is a movement command, otherwise insert %.
-vi style of % jumping to matching brace."
-  (interactive "p")
-  (message "%s" last-command)
-  (if (not (memq last-command '(
-                                set-mark
-                                cua-set-mark
-                                goto-match-paren
-                                down-list
-                                up-list
-                                end-of-defun
-                                beginning-of-defun
-                                backward-sexp
-                                forward-sexp
-                                backward-up-list
-                                forward-paragraph
-                                backward-paragraph
-                                end-of-buffer
-                                beginning-of-buffer
-                                backward-word
-                                forward-word
-                                mwheel-scroll
-                                backward-word
-                                forward-word
-                                mouse-start-secondary
-                                mouse-yank-secondary
-                                mouse-secondary-save-then-kill
-                                move-end-of-line
-                                move-beginning-of-line
-                                backward-char
-                                forward-char
-                                scroll-up
-                                scroll-down
-                                scroll-left
-                                scroll-right
-                                mouse-set-point
-                                next-buffer
-                                previous-buffer
-                                )
-                 ))
-      (self-insert-command (or arg 1))
-    (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
-          ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
-          (t (self-insert-command (or arg 1))))))
-
-;; Used only when not in viper mode
-; (global-set-key (kbd "%") 'goto-match-paren)
 
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
